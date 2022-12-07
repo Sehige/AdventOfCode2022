@@ -6,7 +6,7 @@ namespace AdventOfCode
     {
         public static void Main(string[] args)
         {
-            Day4 currDay = new Day4();
+            Day5 currDay = new Day5();
             currDay.Run();
         }
     }

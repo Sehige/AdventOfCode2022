@@ -10,7 +10,10 @@ namespace AdventOfCode2022
     {
         public void Run()
         {
-            string[] sText = File.ReadAllLines("C:\\Users\\SergiuAtAmbo\\source\\repos\\AdventOfCode2022\\AdventOfCode2022\\Data\\Day2.txt");
+            string workingDirectory = Environment.CurrentDirectory;
+            string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            string[] sText = File.ReadAllLines(sDirectory + "\\Data\\Day2.txt");
+
             int nPoints = 0;
             foreach (string s in sText)
             {

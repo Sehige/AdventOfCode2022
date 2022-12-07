@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AdventOfCode2022
 {
@@ -10,7 +11,10 @@ namespace AdventOfCode2022
     {
         public void Run()
         {
-            string[] sText = File.ReadAllLines("C:\\Users\\SergiuAtAmbo\\source\\repos\\AdventOfCode2022\\AdventOfCode2022\\Data\\Day4.txt");
+            string workingDirectory = Environment.CurrentDirectory;
+            string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            string[] sText = File.ReadAllLines(sDirectory + "\\Data\\Day4.txt");
+
             int nOverlap = 0;
 
             foreach(string s in sText)
