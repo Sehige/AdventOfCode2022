@@ -136,6 +136,8 @@ namespace AdventOfCode2022
         }
         #endregion
 
+        #region Part2
+
         private int  VisibleTop2(int[][] arrayTree, int nTreeX, int nTreeY)
         {
             int nVisible = 0;
@@ -209,5 +211,6 @@ namespace AdventOfCode2022
             return nVisible;
         }
 
+        #endregion
     }
 }
