@@ -12,7 +12,7 @@ namespace AdventOfCode2022
         {
             string workingDirectory = Environment.CurrentDirectory;
             string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            string[] sText = File.ReadAllLines(sDirectory + "\\Data\\Day6.txt");
+            string[] sText = File.ReadAllLines(sDirectory + "\\day6\\Day6.txt");
             string sOneLine = sText[0];
             int nSignal = 14; // 4 for part1
 

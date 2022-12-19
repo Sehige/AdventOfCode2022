@@ -13,7 +13,7 @@ namespace AdventOfCode2022
         {
             string workingDirectory = Environment.CurrentDirectory;
             string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            string[] sText = File.ReadAllLines(sDirectory + "\\Data\\Day1.txt");
+            string[] sText = File.ReadAllLines(sDirectory + "\\day1\\Day1.txt");
 
             List<double> elfCalories= new List<double>();
             double dCalories = 0d;

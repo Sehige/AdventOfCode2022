@@ -13,7 +13,7 @@ namespace AdventOfCode2022
         {
             string workingDirectory = Environment.CurrentDirectory;
             string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            string[] sText = File.ReadAllLines(sDirectory + "\\Data\\Day4.txt");
+            string[] sText = File.ReadAllLines(sDirectory + "\\day4\\Day4.txt");
 
             int nOverlap = 0;
 

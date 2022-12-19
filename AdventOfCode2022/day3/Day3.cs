@@ -14,7 +14,7 @@ namespace AdventOfCode2022
         {
             string workingDirectory = Environment.CurrentDirectory;
             string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            string[] sText = File.ReadAllLines(sDirectory + "\\Data\\Day3.txt");
+            string[] sText = File.ReadAllLines(sDirectory + "\\day3\\Day3.txt");
 
             List<char> listBad = new List<char>();
             int nSum = 0;

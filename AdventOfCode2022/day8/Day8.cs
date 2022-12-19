@@ -14,7 +14,7 @@ namespace AdventOfCode2022
         {
             string workingDirectory = Environment.CurrentDirectory;
             string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            string[] sText = File.ReadAllLines(sDirectory + "\\Data\\Day8.txt");
+            string[] sText = File.ReadAllLines(sDirectory + "\\day8\\Day8.txt");
 
             int[][] arrayTree = new int[sText.Length][];
 
