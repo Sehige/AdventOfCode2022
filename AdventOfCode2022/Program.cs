@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2022;
+using day10;
 
 namespace AdventOfCode
 {
@@ -6,7 +7,7 @@ namespace AdventOfCode
     {
         public static void Main(string[] args)
         {
-            Day9 currDay = new Day9();
+            Day10 currDay = new Day10();
             currDay.Run();
         }
     }
