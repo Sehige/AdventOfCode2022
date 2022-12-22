@@ -12,16 +12,16 @@ namespace AdventOfCode
     {
         public struct Monkey
         {
-            public List<BigInteger> listItems;
+            public List<ulong > listItems;
             public string[] sOperation;
-            public BigInteger nDivider;
+            public ulong  nDivider;
             public int nTrueMonkey;
             public int nFalseMonkey;
             public int nInspections;
 
             public Monkey()
             {
-                listItems = new List<BigInteger>();
+                listItems = new List<ulong >();
                 sOperation= new string[2];
                 nDivider = 1;
                 nTrueMonkey = 0;
@@ -35,56 +35,59 @@ namespace AdventOfCode
             string workingDirectory = Environment.CurrentDirectory;
             string sDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
             string[] sText = File.ReadAllLines(sDirectory + "\\day11\\Day11.txt");
-            BigInteger dStress = 0;
-            int nMonkey = 0;
-            float fInspections = 0;
-            List<float> listInspections = new List<float>();
-            //Dictionary<int, Monkey> keyMonkey = new Dictionary<int, Monkey>();
+            ulong  dStress = 0;
+            ulong dCommDiv = 1;
+            List<ulong > listInspections = new List<ulong >();
             List<Monkey> listMonkey = GetMonkey(sText);
 
             foreach (Monkey monkey in listMonkey)
             {
                 listInspections.Add(0);
+                dCommDiv *= monkey.nDivider;
             }
 
-            for (int i = 0; i < 1000; i++)
+            /// 20 for Part 1
+            for (int i = 0; i < 10000; i++)
             {
-                nMonkey = 0;
-                foreach (Monkey monkey in listMonkey)
+                for (int nMon = 0; nMon < listMonkey.Count; nMon++)
                 {
+                    Monkey monkey = listMonkey[nMon];
                     if (monkey.listItems.Count == 0)
                     {
-                        nMonkey++;
                         continue;
                     }
 
-                    fInspections = monkey.listItems.Count;
-
-                    foreach (BigInteger dItem in monkey.listItems)
+                    listInspections[nMon] += (ulong )monkey.listItems.Count();
+                    
+                    while (monkey.listItems.Count() > 0)
                     {
                         if (monkey.sOperation[1] == "*")
                         {
                             if (monkey.sOperation[0] == monkey.sOperation[1])
                             {
-                                dStress = dItem * dItem;
+                                dStress = monkey.listItems[0] * monkey.listItems[0];
                             }
                             else
                             {
-                                dStress = dItem * BigInteger.Parse(monkey.sOperation[0]);
+                                dStress = monkey.listItems[0] * ulong.Parse(monkey.sOperation[0]);
                             }
                         }
                         else
                         {
                             if (monkey.sOperation[0] == monkey.sOperation[1])
                             {
-                                dStress = dItem + dItem;
+                                dStress = monkey.listItems[0] + monkey.listItems[0];
                             }
                             else
                             {
-                                dStress = dItem + BigInteger.Parse(monkey.sOperation[0]);
+                                dStress = monkey.listItems[0] + ulong.Parse(monkey.sOperation[0]);
                             }
                         }
 
+                        /// Part 2 must be ulong
+                        dStress = dStress % dCommDiv;
+
+                        /// Part 1 and ulong must be made in decimal
                         //dStress = Math.Floor(dStress/ 3);
 
                         if (dStress % monkey.nDivider == 0)
@@ -97,15 +100,10 @@ namespace AdventOfCode
                             listMonkey[monkey.nFalseMonkey].listItems.Add(dStress);
                             //Console.WriteLine("M {2}| Stress level :{0}, to Monkey{1}", dStress, monkey.nFalseMonkey, nMonkey);
                         }
+
+                        monkey.listItems.RemoveAt(0);
                     }
 
-                    listInspections[nMonkey] += fInspections;
-                    if (listInspections[2] > 8)
-                    {
-
-                    }
-                    monkey.listItems.Clear();
-                    nMonkey++;
                 }
             }
 
@@ -132,7 +130,7 @@ namespace AdventOfCode
                     string[] sStarting = s.Split(' ');
                     foreach (string sNumbers in sStarting)
                     {
-                        if (BigInteger.TryParse(sNumbers.Trim(','), out BigInteger item))
+                        if (ulong .TryParse(sNumbers.Trim(','), out ulong  item))
                         {
                             buildMonkey.listItems.Add(item);
                         }
@@ -168,7 +166,7 @@ namespace AdventOfCode
                     string[] sDiv = s.Split(" ");
                     foreach (string str in sDiv)
                     {
-                        if (BigInteger.TryParse(str, out BigInteger nDiv))
+                        if (ulong .TryParse(str, out ulong  nDiv))
                         {
                             buildMonkey.nDivider = nDiv;
                         }
@@ -203,11 +201,11 @@ namespace AdventOfCode
             return listMonkey;
         }
 
-        private void WriteProdMax2(List<float> listInspections)
+        private void WriteProdMax2(List<ulong > listInspections)
         {
-            float fMax1 = 0;
-            float fMax2 = 0;
-            foreach (float n in listInspections)
+            ulong  fMax1 = 0;
+            ulong  fMax2 = 0;
+            foreach (ulong  n in listInspections)
             {
                 if (fMax1 < n)
                 {
@@ -227,7 +225,7 @@ namespace AdventOfCode
         {
             foreach (Monkey monkey in listMonkey)
             {
-                foreach (float fStress in monkey.listItems)
+                foreach (ulong  fStress in monkey.listItems)
                 {
                     Console.Write(fStress + " ");
                 }
